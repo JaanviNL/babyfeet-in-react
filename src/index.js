@@ -4,7 +4,8 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
-import { WishlistContext } from "./context/wishlist-context";
+import {  WishlistProvider } from "./context/wishlist-context";
+import { ProductProvider } from "./context/product-context";
 
 
 
@@ -12,10 +13,14 @@ import { WishlistContext } from "./context/wishlist-context";
 makeServer();
 
 ReactDOM.render(
-  <WishlistContext.Provider>
+  
   <BrowserRouter>
+  <ProductProvider>
+  <WishlistProvider>
     <App />
+    </WishlistProvider>
+    </ProductProvider>
   </BrowserRouter>
-  </WishlistContext.Provider>,
+  ,
   document.getElementById("root")
 );
