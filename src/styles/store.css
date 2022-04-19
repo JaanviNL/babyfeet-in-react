@@ -26,11 +26,10 @@ label {
 }
 .filters {
   width: 16rem;
-   margin-right: 1rem;
-top: 7rem;
-  left: 0;
+  margin-left: -14rem;
   padding-bottom: 3rem;
   text-align: left;
+  margin-right: 1rem;
  
   
 }
@@ -135,15 +134,28 @@ form {
 }
 
 .card-icon {
-  font-size: large;
+  font-size: x-large;
   border-radius: 50%;
   background-color: var(--mediumgrey);
-  padding: 0.4rem;
+  padding: 0.2rem;
   position: relative;
-  bottom: -0.6rem;
-  right: -11.7rem;
+  bottom: -0.4rem;
+  right: -11.9rem;
+  
 }
 
+.card-wishlist-icon
+{
+  font-size: x-large;
+  border-radius: 50%;
+  background-color: var(--mediumgrey);
+  padding: 0.2rem;
+  position: relative;
+  bottom: -0.4rem;
+  right: -11.9rem;
+  color: red;
+  border: none;
+}
 .card-icon:hover {
   color: red;
 }
@@ -152,7 +164,7 @@ form {
   width: 14rem;
   height: 15rem;
   object-fit: cover;
-  margin-top: -2rem;
+  margin-top: -2.3rem;
 }
 
 .strike {

@@ -1,30 +1,25 @@
 import "../styles/store.css";
 import "../components/Headerhome.css";
-// import ProductImage from "../assests/p-1.webp";
-import { useEffect, useState } from "react";
-import axios from 'axios';
+
 import Filters from "../components/Filters";
+
+import { useProduct } from "../context/product-context";
+import { useWishList } from "../context/wishlist-context";
+
+
 
 export default function Product() {
 
+ const { product } = useProduct();
+ const { onclickaddwishlist, wishlist}=useWishList();
+
  
-  const [product, setProduct] = useState([]);
-
-  useEffect(() => {
-    const getProducts = async () => {
-        const res = await axios.get("/api/products")
-        
-        setProduct(res.data.products)
-        console.log(res.data.products)      
-    }
-    getProducts()
-}, [])
-
   return (
     <div className="product-page">
      <Filters/>
       
       <div className="products">
+        
         <div className="f-row">
           <p> Products (Showing {product.length} Products)</p>
           <select name="" id="" className="drop-down">
@@ -36,11 +31,15 @@ export default function Product() {
         </div>
         
         <div className="products-card">
-        
-    
-      {product && product.map((item) => <div className="product-card">
+        {product && product.map((item) => <div className="product-card">
             <span>
-              <i className="far fa-heart card-icon"></i>
+               <button className="card-wishlist-icon" onClick={()=>onclickaddwishlist(item)}>
+              { wishlist.find((wishlistItems) => wishlistItems._id === item._id) ? (
+                <i className=" fa fa-solid fa-heart "></i>
+              ) : (
+                <i className="far fa-heart "></i>
+              )}
+              </button>
             </span>
             <img src={item.image} alt="Fashion" />
 
@@ -52,6 +51,7 @@ export default function Product() {
           </div>)}
           
         </div>
+      
       </div>
     </div>
   );

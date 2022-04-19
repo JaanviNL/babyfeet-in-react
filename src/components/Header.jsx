@@ -1,8 +1,11 @@
 import "./Headerhome.css";
 import logo from "../assests/logo.png";
 import { Link } from "react-router-dom";
+import { useWishList } from "../context/wishlist-context";
 
 export default function Header() {
+  const { wishlist } = useWishList();
+
   return (
     <div className="header-nav">
       <div className="logo">
@@ -25,6 +28,9 @@ export default function Header() {
         </Link>
         <Link to="/wishlist" className="link">
           <i className="far fa-heart icon"></i>Wishlist
+         {
+           wishlist.length>0 && <span className="icon-badge">{wishlist.length}</span>
+         } 
         </Link>
         <Link to="/cart" className="link">
           <i className="fas fa-shopping-cart icon"></i>Cart
