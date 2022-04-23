@@ -22,7 +22,8 @@ const WishlistProvider = ({children}) =>
         image:item.image,
         price: item.price,
         mrp:item.mrp,
-        discount:item.discount,}])
+        discount:item.discount,
+    count:item.count}])
    }
    
  

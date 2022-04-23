@@ -2,9 +2,13 @@ import "./Headerhome.css";
 import logo from "../assests/logo.png";
 import { Link } from "react-router-dom";
 import { useWishList } from "../context/wishlist-context";
+import { useCart } from "../context/cart-context";
+
 
 export default function Header() {
   const { wishlist } = useWishList();
+  const { cart } = useCart();
+
 
   return (
     <div className="header-nav">
@@ -34,6 +38,9 @@ export default function Header() {
         </Link>
         <Link to="/cart" className="link">
           <i className="fas fa-shopping-cart icon"></i>Cart
+          {
+           cart.length>0 && <span className="icon-badge">{cart.length}</span>
+         }
         </Link>
         <Link to="/login" className="link">
           <i className="far fa-user icon"></i>Account

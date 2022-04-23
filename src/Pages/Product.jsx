@@ -5,6 +5,7 @@ import Filters from "../components/Filters";
 
 import { useProduct } from "../context/product-context";
 import { useWishList } from "../context/wishlist-context";
+import { useCart } from "../context/cart-context";
 
 
 
@@ -12,6 +13,7 @@ export default function Product() {
 
  const { product } = useProduct();
  const { onclickaddwishlist, wishlist}=useWishList();
+ const { onclickaddcart , cart } = useCart();
 
  
   return (
@@ -45,9 +47,9 @@ export default function Product() {
 
             <p className="info"> {item.name}</p>
             <p className=" info price">
-              {item.price} <span className="strike">{item.mrp}</span> {item.discount}
+            ₹{item.price} <span className="strike">₹{item.mrp}</span> {item.discount}
             </p>
-            <button className="card-btn">Add to Cart</button>
+            <button  onClick ={()=>onclickaddcart(item)} className="card-btn">{ cart.find((cartItems) => cartItems._id === item._id) ? "Go to Cart" : "Add to Cart"}</button>
           </div>)}
           
         </div>
