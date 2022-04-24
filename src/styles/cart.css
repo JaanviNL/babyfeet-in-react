@@ -62,10 +62,14 @@ h1 {
 
 .text-button {
     display: flex;
-    justify-content: flex-end;
-    margin-top: -1rem;
+    justify-content: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
-
+.emptycart
+{margin-left:5rem;
+    height: 30rem;
+}
 .remove-wishlist {
     background-color: inherit;
     color: var(--primary-btn);
@@ -83,7 +87,7 @@ h1 {
 }
 
 .horizontal-card {
-    width: 20rem;
+    width: 22rem;
     border: 1px solid var(--mediumgrey);
     background-color: var(--grey);
 }
@@ -144,4 +148,16 @@ h3 {
     position: fixed;
     top:15rem;
     right:10rem;
+}
+.horizontal-img
+{
+    width: 10rem;
+    height: 12rem;
+}
+.img-with-text
+{
+    display: flex;
+    gap:1rem;
+    padding: 0.5rem;
+
 }
