@@ -7,7 +7,8 @@ import { useCart } from "../context/cart-context";
 
 export default function Header() {
   const { wishlist } = useWishList();
-  const { cart } = useCart();
+  const { state } = useCart();
+  const {cart } = state;
 
 
   return (

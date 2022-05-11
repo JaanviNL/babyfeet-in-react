@@ -1,10 +1,10 @@
 import "../styles/store.css";
 import "../components/Headerhome.css";
-
+import { Link } from "react-router-dom";
 import Filters from "../components/Filters";
 
 import { useProduct } from "../context/product-context";
-import { useWishList } from "../context/wishlist-context";
+
 import { useCart } from "../context/cart-context";
 
 
@@ -12,8 +12,9 @@ import { useCart } from "../context/cart-context";
 export default function Product() {
 
  const { product } = useProduct();
- const { onclickaddwishlist, wishlist}=useWishList();
- const { onclickaddcart , cart } = useCart();
+ 
+ const { state , dispatch} = useCart();
+  const {cart  , wishlist} = state;
 
  
   return (
@@ -35,7 +36,7 @@ export default function Product() {
         <div className="products-card">
         {product && product.map((item) => <div className="product-card">
             <span>
-               <button className="card-wishlist-icon" onClick={()=>onclickaddwishlist(item)}>
+               <button className="card-wishlist-icon" onClick={()=>dispatch({type:'Add-wishlist',payload:(item)})}>
               { wishlist.find((wishlistItems) => wishlistItems._id === item._id) ? (
                 <i className=" fa fa-solid fa-heart "></i>
               ) : (
@@ -49,7 +50,11 @@ export default function Product() {
             <p className=" info price">
             ₹{item.price} <span className="strike">₹{item.mrp}</span> {item.discount}
             </p>
-            <button  onClick ={()=>onclickaddcart(item)} className="card-btn">{ cart.find((cartItems) => cartItems._id === item._id) ? "Go to Cart" : "Add to Cart"}</button>
+            { cart.find((cartItems) => cartItems._id === item._id) ? <Link to ="/cart" className="card-btn-link"><button className="card-btn">Go To Cart</button></Link> : <button  onClick ={()=>dispatch({type:'Add-to-cart',payload:(item)})} className="card-btn">Add To Cart</button>}
+
+
+
+            {/* // <button  onClick ={()=>dispatch({type:'Add-to-cart',payload:(item)})} className="card-btn">{ cart.find((cartItems) => cartItems._id === item._id) ? "Go to Cart" : "Add to Cart"}</button> */}
           </div>)}
           
         </div>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../styles/store.css";
 
 export default function Filters(){
@@ -9,15 +10,15 @@ export default function Filters(){
             <h6>
               <i className="fas fa fa-filter icon"></i>Filter
             </h6>
-            <button className="clr-btn">Clear All</button>
+            <Link to ="/store" className="clr-btn">Clear All</Link>
           </div>
           <div className="flex-column">
             <label className="filter-label">Gender</label>
             <label>
-              <input type="radio" name="gender" id="" /> Girl
+              <input type="radio" name="gender" value="girl" /> Girl
             </label>
             <label>
-              <input type="radio" name="gender" id="" /> Boy
+              <input type="radio" name="gender" value="boy" /> Boy
             </label>
           </div>
           <hr className="break-line" />

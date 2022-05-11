@@ -188,4 +188,9 @@ form {
   background-color: var(--primary-btn);
   color: var(--grey);
   cursor: pointer;
+  border-color:  var(--primary-btn);
+}
+.card-btn-link
+{
+  width: 14rem;
 }

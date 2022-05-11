@@ -18,12 +18,13 @@ makeServer();
 ReactDOM.render(
   
   <BrowserRouter>
-  <ProductProvider>
+  <ProductProvider><CartProvider>
   <WishlistProvider>
-    <CartProvider>
+    
     <App />
-    </CartProvider>
+   
     </WishlistProvider>
+    </CartProvider>
     </ProductProvider>
   </BrowserRouter>
   ,

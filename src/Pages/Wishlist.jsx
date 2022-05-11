@@ -1,11 +1,12 @@
 import "../styles/wishlist.css";
-import { useWishList } from "../context/wishlist-context";
+import { Link } from "react-router-dom";
 import { useCart } from "../context/cart-context";
 
 export default function WishList() {
 
-  const { wishlist , onclickremovewishlist } = useWishList();
-  const { cart , onclickaddcart } = useCart();
+ 
+  const { state , dispatch} = useCart();
+  const { cart ,wishlist } = state;
   return (
     <>
     <div className="product-page">
@@ -21,8 +22,8 @@ export default function WishList() {
     <img src={item.image} alt ="Wishlist"/>
     <p class="info"> {item.name}</p>
     <p class=" info price">₹{item.price} <span class="strike">₹{item.mrp}</span>{item.discount}</p>
-    <button  onClick ={()=>onclickaddcart(item)} className="card-btn">{ cart.find((cartItems) => cartItems._id === item._id) ? "Go to Cart" : "Add to Cart"}</button>
-    <button class="card-btn remove-wishlist" onClick={() => onclickremovewishlist(item)}>Remove From Wishlist</button>
+    { cart.find((cartItems) => cartItems._id === item._id) ? <Link to ="/cart" className="card-btn-link"><button className="card-btn">Go To Cart</button></Link> : <button  onClick ={()=>dispatch({type:'Add-to-cart',payload:(item)})} className="card-btn">Add To Cart</button>}
+    <button class="card-btn remove-wishlist" onClick={()=>dispatch({type:'Remove-wishlist',payload:(item)})}>Remove From Wishlist</button>
 
 </div>
   )}

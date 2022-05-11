@@ -1,12 +1,13 @@
 import { useCart } from "../context/cart-context";
 import "../styles/cart.css";
-import { useWishList } from "../context/wishlist-context";
+
 import emptycart from "../assests/emptycart.jpg";
 
 
 export default function Cart() {
-  const { cart, onclickremovecart, increasecount,decreasecount ,totalprice,totalmrp } = useCart();
-  const { wishlist , onclickaddwishlist } = useWishList();
+  const { state , dispatch} = useCart();
+  const {cart , totalmrp,totalprice , wishlist} = state;
+  
   const savings = totalmrp-totalprice;
 
     return (
@@ -24,9 +25,9 @@ export default function Cart() {
                 </p>
                 <p class="sub-title info-price">₹{item.price} <span class="strike">₹{item.mrp}</span> {item.discount}</p>
                 <div class="qty">Qty:
-                    <button onClick={()=>increasecount(item)} class="input-btn">+</button>
+                    <button onClick={()=>dispatch({type:'Increase-count',payload:(item)})} class="input-btn">+</button>
                     <input class="input-qty" value={item.count}></input>
-                    <button onClick={()=>decreasecount(item)} class="input-btn">-</button>
+                    <button onClick={()=>dispatch({type:'Decrease-count',payload:(item)})} class="input-btn">-</button>
                 </div>
                 
             </div>
@@ -34,10 +35,10 @@ export default function Cart() {
 
         <div class="text-button">
             
-            <button className="card-btn btn-cart" onClick={()=>onclickaddwishlist(item)}>
+            <button className="card-btn btn-cart" onClick={()=>dispatch({type:'Add-wishlist',payload:(item)})}>
               { wishlist.find((wishlistItems) => wishlistItems._id === item._id) ? "Already in Wishlist" : "Add to Wishlist"}
               </button>
-            <button  onClick ={()=>onclickremovecart(item)} class="card-btn btn-cart remove-wishlist">Remove</button>
+            <button  onClick ={()=>dispatch({type:'Remove-from-cart',payload:(item)})} class="card-btn btn-cart remove-wishlist">Remove</button>
           </div>
     </div>
   )}
